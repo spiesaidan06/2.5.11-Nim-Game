@@ -43,11 +43,7 @@ public class PhraseSolver
       System.out.println(currentPlayerName + "'s turn!");
       System.out.println("Make a guess!");
       guess = input.nextLine();
-      String m=board.getSolvedPhrase();
-      if (m.contains(guess)){
-        System.out.println("Don't type a letter you already inputted!");
-        play();
-      }
+      board.getSolvedPhrase();
       solved = board.isSolved(guess);
       
       /* your code here - determine how game ends */
@@ -67,24 +63,28 @@ public class PhraseSolver
           System.out.println(player2.getName() + " wins!");
         }
       } else {
-        correct = board.guessLetter(guess);
-        if (correct) {
-          board.setLetterValue();
-          if (currentPlayer == 1) {
-            player1.addScore(board.getLetterValue());
-            System.out.println(player1.getName() + " got " + board.getLetterValue() + " points!");
-          } else {
-            player2.addScore(board.getLetterValue());
-            System.out.println(player2.getName() + " got " + board.getLetterValue() + " points!");
-          }
+        if (board.getSolvedPhrase().contains(guess)){
+          System.out.println("Don't type a letter you already inputted!");
         } else {
-          System.out.println("Wrong! " + currentPlayerName + " lost 100 points!");
-          if (currentPlayer == 1) {
-            player1.addScore(-100);
-            currentPlayer = 2;
+          correct = board.guessLetter(guess);
+          if (correct) {
+            board.setLetterValue();
+            if (currentPlayer == 1) {
+              player1.addScore(board.getLetterValue());
+              System.out.println(player1.getName() + " got " + board.getLetterValue() + " points!");
+            } else {
+              player2.addScore(board.getLetterValue());
+              System.out.println(player2.getName() + " got " + board.getLetterValue() + " points!");
+            }
           } else {
-            player2.addScore(-100);
-            currentPlayer = 1;
+            System.out.println("Wrong! " + currentPlayerName + " lost 100 points!");
+            if (currentPlayer == 1) {
+              player1.addScore(-100);
+              currentPlayer = 2;
+            } else {
+              player2.addScore(-100);
+              currentPlayer = 1;
+            }
           }
         }
         System.out.println(board.getSolvedPhrase());
