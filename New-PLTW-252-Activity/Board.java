@@ -16,14 +16,22 @@ public class  Board
   public Board() {
     solvedPhrase = "";
     phrase = loadPhrase();
-    currentLetterValue = setLetterValue();
-    System.out.println("Phrase: " + phrase); //temp test code
+    currentLetterValue = 0;
+    setLetterValue();
   }
   
   /* your code here - accessor(s) */
+  public String getSolvedPhrase() {
+    return solvedPhrase;
+  }
 
-  /* your code here - mutator(s)  */
+  public String getPhrase() {
+    return phrase;
+  }
 
+  public int getLetterValue() {
+    return currentLetterValue;
+  }
 
   /* ---------- provided code, do not modify ---------- */
   public void setLetterValue()
@@ -87,25 +95,38 @@ public class  Board
 
     return tempPhrase;
   }  
-
+  /*
+  Checks if the letter the user guessed is correct
+  
+  Precondition:
+    Guess is initialized and is populated
+  Postcondition:
+    The variable newsolved phrase is populated 
+    Newsolvedphrase is appended
+  */
   public boolean guessLetter(String guess)
   {
-    boolean foundLetter = false;
-    String newSolvedPhrase = "";
+    boolean foundLetter = false; // creates a boolean, foundLetter, which is initially set to false
+    String newSolvedPhrase = ""; // creates an empty String
 
+    // iterates through each letter of phrase
     for (int i = 0; i < phrase.length(); i++)
     {
+      // checks if the guess is the same as the letter
       if (phrase.substring(i, i + 1).equals(guess))
       {
+        // If the condition if fulfilled, the letter is added to the newSolvedPhrase String
         newSolvedPhrase += guess + " ";
         foundLetter = true;
       }
       else
+        // adds the blank and the space from the String solved phrase
       {
-        newSolvedPhrase += solvedPhrase.substring(i * 2, i * 2 + 1) + " ";  
+        newSolvedPhrase += solvedPhrase.substring(i * 2, i * 2 + 1) + " "; 
       }
     }
+    // sets the solvedPhrase to the newSolvedPhrase String
     solvedPhrase = newSolvedPhrase;
-    return foundLetter;
+    return foundLetter; //returns the variable foundLetter
   } 
 } 

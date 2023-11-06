@@ -14,32 +14,81 @@ public class PhraseSolver
   private boolean solved;
   /* your code here - constructor(s) */ 
   public PhraseSolver() {
-    player1 = new Player("Aidan");
-    player2 = new Player("Arun");
+    player1 = new Player();
+    player2 = new Player();
     board = new Board();
     solved = false;
   }
-  /* your code here - accessor(s) */
-
-  /* your code here - mutator(s)  */
 
   public void play()
   {
     boolean solved = false;
     int currentPlayer = 1;
+    String currentPlayerName = "";
+    String guess = "";
 
     Scanner input = new Scanner(System.in);
 
     boolean correct = true;
+    
     while (!solved) 
     {
       /* your code here - game logic */
+      System.out.println();
+      if (currentPlayer == 1) {
+        currentPlayerName = player1.getName();
+      } else {
+        currentPlayerName = player2.getName();
+      }
+      System.out.println(currentPlayerName + "'s turn!");
+      System.out.println("Make a guess!");
+      guess = input.nextLine();
+      String m=board.getSolvedPhrase();
+      if (m.contains(guess)){
+        System.out.println("Don't type a letter you already inputted!");
+        play();
+      }
+      solved = board.isSolved(guess);
       
-
       /* your code here - determine how game ends */
-      solved = true; 
-    } 
-
+      if (solved) {
+        if (currentPlayer == 1) {
+          player1.addScore(2000);
+        } else {
+          player2.addScore(2000);
+        }
+        System.out.println();
+        System.out.println(currentPlayerName + " has guessed the phrase!");
+        System.out.println(player1.getName() + ": " + player1.getScore());
+        System.out.println(player2.getName() + ": " + player2.getScore());
+        if (player1.getScore() > player2.getScore()) {
+          System.out.println(player1.getName() + " wins!");
+        } else if (player2.getScore() > player1.getScore()) {
+          System.out.println(player2.getName() + " wins!");
+        }
+      } else {
+        correct = board.guessLetter(guess);
+        if (correct) {
+          board.setLetterValue();
+          if (currentPlayer == 1) {
+            player1.addScore(board.getLetterValue());
+            System.out.println(player1.getName() + " got " + board.getLetterValue() + " points!");
+          } else {
+            player2.addScore(board.getLetterValue());
+            System.out.println(player2.getName() + " got " + board.getLetterValue() + " points!");
+          }
+        } else {
+          System.out.println("Wrong! " + currentPlayerName + " lost 100 points!");
+          if (currentPlayer == 1) {
+            player1.addScore(-100);
+            currentPlayer = 2;
+          } else {
+            player2.addScore(-100);
+            currentPlayer = 1;
+          }
+        }
+        System.out.println(board.getSolvedPhrase());
+      }
+    }
   }
-
 }
