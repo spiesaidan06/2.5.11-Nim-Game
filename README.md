@@ -1,6 +1,6 @@
-# PLTW-2.5.2
-Date: October 29, 2023
+# PLTW-2.5.7-9
+Date: November 7, 2023
 
-Created By: Aidan Spies & Arun Kasi
+Created By: Aidan Spies
 
-Description: A 2-player hangman game where you get points for guessing the correct letter and lose points otherwise. The game will end once the secret phrase is guessed and the player with the most points wins!
+Description: 
