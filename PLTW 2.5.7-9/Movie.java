@@ -1,8 +1,4 @@
-/*
- * Activity 2.5.7
- *
- * A Book class for the MediaLibrary program
- */
+// Aidan Spies
 public class Movie
 {
   private String title;

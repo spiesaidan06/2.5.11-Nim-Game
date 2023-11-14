@@ -1,8 +1,4 @@
-/**
- * Activity 2.5.7
- * 
- * A MediaLib class for the MediaLibrary program
- */
+// Aidan Spies
 public class MediaLib
 {
   private Book book;
@@ -13,13 +9,19 @@ public class MediaLib
   private static int numMovies;
   private static int numSongs;
   public static String owner = "PLTW";
+  public static String date;
 
+  public MediaLib() {
+    date = Date.getDateTime();
+  }
+  
   public void addBook(Book b)
   {
     if (book == null) {
       book = b;
       numEntries++;
       numBooks++;
+      date = Date.getDateTime();
     } else {
       System.out.println("Book limit reached!");
     }
@@ -27,6 +29,7 @@ public class MediaLib
 
   public void changeBook(Book b) {
     book = b;
+    date = Date.getDateTime();
   }
 
   public void addMovie(Movie m) {
@@ -34,6 +37,7 @@ public class MediaLib
       movie = m;
       numEntries++;
       numMovies++;
+      date = Date.getDateTime();
     } else {
       System.out.println("Movie limit reached!");
     }
@@ -41,6 +45,7 @@ public class MediaLib
 
   public void changeMovie(Movie m) {
     movie = m;
+    date = Date.getDateTime();
   }
 
   public void addSong(Song s) {
@@ -48,6 +53,7 @@ public class MediaLib
       song = s;
       numEntries++;
       numSongs++;
+      date = Date.getDateTime();
     } else {
       System.out.println("Song limit reached!");
     }
@@ -55,11 +61,12 @@ public class MediaLib
 
   public void changeSong(Song s) {
     song = s;
+    date = Date.getDateTime();
   }
 
   public String toString() 
   {
-    String info = "Library:";
+    String info = "Library:\nLast Updated: " + date;
     if (book != null) {
       info += "\n" + book.getAuthor() + "'s " + book.getTitle();
     }
@@ -69,7 +76,7 @@ public class MediaLib
     if (song != null) {
       info += "\n" + song.getTitle();
     }
-    if (info == "Library:") {
+    if (info == "Library:/nLast Updated: " + date) {
       info = "No media found!\n";
     }
     return info;
@@ -77,6 +84,18 @@ public class MediaLib
 
   public static int getNumEntries() {
     return numEntries;
+  }
+
+  public static int getNumBooks() {
+    return numBooks;
+  }
+
+  public static int getNumMovies() {
+    return numMovies;
+  }
+
+  public static int getNumSongs() {
+    return numSongs;
   }
 
   public void testBook(Book tester) {
