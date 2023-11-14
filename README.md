@@ -3,4 +3,4 @@ Date: November 7, 2023
 
 Created By: Aidan Spies
 
-Description: 
+Description: This program allows you to create a library for books, movies, and songs. A library can only hold one of each type at a time.
