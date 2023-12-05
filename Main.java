@@ -1,17 +1,17 @@
 import java.util.Scanner;
 import java.util.Random;
 class Main {
-  private static boolean p1Turn;
-  private static boolean play = true;
-  private static Scanner sc = new Scanner(System.in);
-  private static String input;
-  private static int pieces;
   private static Player p1 = new Player();
   private static Player p2 = new Player();
   private static Board game = new Board();
   
   public static void main(String[] args) {
     Random rand = new Random();
+    boolean p1Turn = true;
+    boolean play = true;
+    Scanner sc = new Scanner(System.in);
+    String input;
+    int pieces = 0;
     System.out.println("Welcome to the Game of Nim!");
     boolean goodInput = false;
     while(goodInput == false) {
